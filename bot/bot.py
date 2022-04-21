@@ -232,7 +232,7 @@ while True:
 
             else:
                 cursorObj = con.cursor()
-                cursorObj.execute('INSERT INTO all_posts (rep, postid, posttime, reported, poster) VALUES (%s, %s, %s, %s, %s)', (submission.author_flair_text, submission.id, submission.created_utc, submission.author.name))
+                cursorObj.execute('INSERT INTO all_posts (rep, postid, posttime, reported, poster) VALUES (%s, %s, %s, 0, %s)', (submission.author_flair_text, submission.id, submission.created_utc, submission.author.name))
                 con.commit()
                 check_post(submission)
                 logID(submission.id)
