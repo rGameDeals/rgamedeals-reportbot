@@ -25,6 +25,8 @@ con = pymysql.connect(
     db=os.environ['MYSQL_DB']
 )
 
+
+
 REDDIT_CID=os.environ['REDDIT_CID']
 REDDIT_SECRET=os.environ['REDDIT_SECRET']
 REDDIT_USER = os.environ['REDDIT_USER']
@@ -101,6 +103,7 @@ def check_post(submission):
 
       for a in devmatches:
 #        print( "*" + a + "*" )
+        cursorObj = con.cursor()
         cursorObj.execute("SELECT * FROM devban WHERE dev = %s", (a,) )
         rows = cursorObj.fetchall()
         if len(rows) != 0:
@@ -109,6 +112,7 @@ def check_post(submission):
           submission.report("Bot Report - " + report)
           return
       for a in pubmatches:
+        cursorObj = con.cursor()
         cursorObj.execute('SELECT * FROM pubban WHERE pub= %s', (a,) )
         rows = cursorObj.fetchall()
         if len(rows) != 0:
@@ -135,6 +139,7 @@ def check_post(submission):
       cursorObj.execute('SELECT * FROM weeklongdeals WHERE week = ' + datetext )
       rows = cursorObj.fetchall()
       if len(rows) == 0:
+        cursorObj = con.cursor()
         cursorObj.execute('INSERT INTO weeklongdeals (week, post) VALUES (%s, %s)', (monday.strftime('%Y%m%d'), submission.id))
         con.commit()
     elif re.search("itch.io", url) is not None:
@@ -206,6 +211,7 @@ while True:
                 logging.info("Rep post by " + submission.author_flair_text )
                 #print ( submission.author_flair_text )
                 #print ( submission.author_flair_css_class )
+                cursorObj = con.cursor()
                 cursorObj.execute('SELECT * FROM rep_posts WHERE rep = %s AND posttime > %s ', (submission.author_flair_text , int(submission.created_utc) - (3600 * 22)  ))
                 rows = cursorObj.fetchall()
                 if len(rows) > 0:
@@ -219,12 +225,13 @@ while True:
                         submission.report("Bot Report - " + report)
                 else:
                     logging.info("- post ok")
-
+                cursorObj = con.cursor()
                 cursorObj.execute('INSERT INTO rep_posts (rep, postid, posttime, reported, poster) VALUES (%s, %s, %s, 0, %s)', (submission.author_flair_text, submission.id, submission.created_utc, submission.author.name))
                 con.commit()
                 logID(submission.id)
 
             else:
+                cursorObj = con.cursor()
                 cursorObj.execute('INSERT INTO all_posts (rep, postid, posttime, reported, poster) VALUES (%s, %s, %s, %s, %s)', (submission.author_flair_text, submission.id, submission.created_utc, submission.author.name))
                 con.commit()
                 check_post(submission)
