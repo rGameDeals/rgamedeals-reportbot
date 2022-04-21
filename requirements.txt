@@ -1,0 +1,7 @@
+praw
+progressbar
+schedule
+dateparser
+pyyaml
+pymysql
+bs4

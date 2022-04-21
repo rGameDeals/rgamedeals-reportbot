@@ -1,0 +1,1 @@
+# rgamedeals-reportbot
