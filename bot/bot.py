@@ -60,6 +60,7 @@ def logID(postid):
 
 def check_post(submission):
 ### Find all URLS inside a .self post
+    WHITELIST = reddit.subreddit('gamedeals').wiki['gamedealsbot-whitelist'].content_md
     headers = {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36'}
     cookies = {
@@ -161,7 +162,7 @@ def check_post(submission):
     else:
       if re.search("(?:https?:\/\/)?(?:www\.)?([\w\-\.]+)\/", url) is not None:
         match1 = re.search("(?:https?:\/\/)?(?:www\.)?([\w\-\.]+)\/", url)
-        if match1.group(1) not in open(apppath+'whitelist.txt'):
+        if match1.group(1) not in WHITELIST:
           logging.info("checking url " + url)
           try:
             r = requests.get(url,headers=headers,timeout=10)
@@ -177,7 +178,7 @@ def check_post(submission):
             logging.info("error checking " + url)
       elif re.search("(?:https?:\/\/)?(?:www\.)?([\w\-\.]+)", url) is not None:
         match1 = re.search("(?:https?:\/\/)?(?:www\.)?([\w\-\.]+)", url)
-        if match1.group(1) not in open(apppath+'whitelist.txt'):
+        if match1.group(1) not in WHITELIST:
           logging.info("checking url " + url)
           try:
             r = requests.get(url,headers=headers,timeout=10)
