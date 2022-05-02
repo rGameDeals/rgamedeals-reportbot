@@ -58,6 +58,7 @@ def logID(postid):
     f.close()
 
 def check_post(submission):
+    con.ping(reconnect=True)
 ### Find all URLS inside a .self post
     WHITELIST = reddit.subreddit('gamedeals').wiki['gamedealsbot-whitelist'].content_md
     headers = {
