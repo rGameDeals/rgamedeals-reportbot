@@ -137,6 +137,7 @@ def check_post(submission):
 #          report = "WEEK LONG DEAL - https://redd.it/" + rows[0][2]
 
     elif re.search("steampowered.com.*?filter=weeklongdeals", url) is not None:
+      cursorObj = con.cursor()
       cursorObj.execute('SELECT * FROM weeklongdeals WHERE week = ' + datetext )
       rows = cursorObj.fetchall()
       if len(rows) == 0:
