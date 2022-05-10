@@ -210,6 +210,7 @@ while True:
                 continue
 # Rep Post
             if submission.author_flair_css_class is not None and submission.author_flair_css_class != "":
+                con.ping(reconnect=True)
                 logging.info("Rep post by " + submission.author_flair_text )
                 #print ( submission.author_flair_text )
                 #print ( submission.author_flair_css_class )
@@ -233,6 +234,7 @@ while True:
                 logID(submission.id)
 
             else:
+                con.ping(reconnect=True)
                 cursorObj = con.cursor()
                 cursorObj.execute('INSERT INTO all_posts (rep, postid, posttime, reported, poster) VALUES (%s, %s, %s, 0, %s)', (submission.author_flair_text, submission.id, submission.created_utc, submission.author.name))
                 con.commit()
