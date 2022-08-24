@@ -48,7 +48,7 @@ f = open(apppath+"postids.txt","a+")
 f.close()
 
 
-logging.basicConfig(level=logging.INFO,
+logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(message)s',
                     datefmt='%m-%d %H:%M')
 
