@@ -175,6 +175,8 @@ def check_post(submission):
               report = "UKR Links Found"
             elif re.search("shopify.com|wix.com", r.text.lower()) is not None:
               report = "Wix/Shopify Found check if legit store"
+            elif re.search("rakuten.com/r/(.*)[?&]eeid=", r.text.lower()) is not None:
+              report = "rakuten referral found"
           except:
             logging.info("error checking " + url)
       elif re.search("(?:https?:\/\/)?(?:www\.)?([\w\-\.]+)", url) is not None:
@@ -191,6 +193,8 @@ def check_post(submission):
               report = "UKR Links Found"
             elif re.search("shopify.com|wix.com", r.text.lower()) is not None:
               report = "Wix/Shopify Found check if legit store"
+            elif re.search("rakuten.com/r/(.*)[?&]eeid=", r.text.lower()) is not None:
+              report = "rakuten referral found"
           except:
             logging.info("error checking " + url)
     if report != "":
