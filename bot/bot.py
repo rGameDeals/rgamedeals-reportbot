@@ -151,13 +151,13 @@ def check_post(submission):
           report = "always free game"
       except:
         logging.info("error checking " + url)
-    elif re.search("almart.com", url) is not None:
-      try:
-        r = requests.get(url,headers=headers,timeout=10)
-        if re.search('data-tl-id="ProductSellerInfo-SellerName" tabindex="0">Walmart</a>', r.text.lower()) is None and re.search('sold and shipped by <!-- -->walmart.com', r.text.lower()) is None:
-          report = "Walmart Marketplace item"
-      except:
-        logging.info("error checking " + url)
+#    elif re.search("almart.com", url) is not None:
+#      try:
+#        r = requests.get(url,headers=headers,timeout=10)
+#        if re.search('data-tl-id="ProductSellerInfo-SellerName" tabindex="0">Walmart</a>', r.text.lower()) is None and re.search('sold and shipped by <!-- -->walmart.com', r.text.lower()) is None:
+#          report = "Walmart Marketplace item"
+#      except:
+#        logging.info("error checking " + url)
 
 
     else:
