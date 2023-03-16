@@ -248,3 +248,6 @@ while True:
     except (prawcore.exceptions.RequestException, prawcore.exceptions.ResponseException):
         logging.info("Error connecting to reddit servers. Retrying in 1 minute...")
         time.sleep(60)
+    except:
+        logging.info("Unknown Error connecting to reddit servers. Retrying in 1 minute...")
+        time.sleep(60)
