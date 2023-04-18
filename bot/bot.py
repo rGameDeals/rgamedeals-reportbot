@@ -241,7 +241,7 @@ while True:
 
             if submission.author_flair_css_class is not None and submission.author_flair_css_class != "":
 # Rep Post
-              if submission.author_flair_css_class == "rep";
+              if submission.author_flair_css_class == "rep":
                 con.ping(reconnect=True)
                 logging.info("Rep post by " + submission.author_flair_text )
                 #print ( submission.author_flair_text )
