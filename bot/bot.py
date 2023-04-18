@@ -214,14 +214,13 @@ while True:
                 continue
             if submission.author_flair_css_class is not None and submission.author_flair_css_class != "":
 # Dev Post
-              con.ping(reconnect=True)
-              if submission.author_flair_css_class == "dev";
-                con.ping(reconnect=True)
+            #con.ping(reconnect=True)
+             con.ping(reconnect=True)
 
-                cursorObj = con.cursor()
-                cursorObj.execute('SELECT * FROM devs WHERE username = %s', (submission.author.name ,  ))
-                rows = cursorObj.fetchall()
-                if len(rows) > 0:
+             cursorObj = con.cursor()
+             cursorObj.execute('SELECT * FROM devs WHERE username = %s', (submission.author.name ,  ))
+             rows = cursorObj.fetchall()
+             if len(rows) > 0:
 
                   logging.info("Dev/Pub post by " + submission.author.name )
                   cursorObj = con.cursor()
@@ -235,10 +234,10 @@ while True:
                           submission.report("Bot Report - " + report)
                   else:
                       logging.info("- post ok")
-                cursorObj = con.cursor()
-                cursorObj.execute('INSERT INTO dev_posts (dev, postid, posttime, reported, poster) VALUES (%s, %s, %s, 0, %s)', (submission.author.name, submission.id, submission.created_utc, submission.author.name))
-                con.commit()
-                logID(submission.id)
+              #cursorObj = con.cursor()
+              #cursorObj.execute('INSERT INTO dev_posts (dev, postid, posttime, reported, poster) VALUES (%s, %s, %s, 0, %s)', (submission.author.name, submission.id, submission.created_utc, submission.author.name))
+              #con.commit()
+                  logID(submission.id)
 
 
 # Rep Post
