@@ -212,7 +212,6 @@ while True:
                 continue
             if submission.id in open(apppath+'postids.txt').read():
                 continue
-            if submission.author_flair_css_class is not None and submission.author_flair_css_class != "":
 # Dev Post
             #con.ping(reconnect=True)
             con.ping(reconnect=True)
@@ -240,6 +239,7 @@ while True:
                   logID(submission.id)
 
 
+            if submission.author_flair_css_class is not None and submission.author_flair_css_class != "":
 # Rep Post
               if submission.author_flair_css_class == "rep";
                 con.ping(reconnect=True)
