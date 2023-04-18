@@ -215,12 +215,12 @@ while True:
             if submission.author_flair_css_class is not None and submission.author_flair_css_class != "":
 # Dev Post
             #con.ping(reconnect=True)
-             con.ping(reconnect=True)
+            con.ping(reconnect=True)
 
-             cursorObj = con.cursor()
-             cursorObj.execute('SELECT * FROM devs WHERE username = %s', (submission.author.name ,  ))
-             rows = cursorObj.fetchall()
-             if len(rows) > 0:
+            cursorObj = con.cursor()
+            cursorObj.execute('SELECT * FROM devs WHERE username = %s', (submission.author.name ,  ))
+            rows = cursorObj.fetchall()
+            if len(rows) > 0:
 
                   logging.info("Dev/Pub post by " + submission.author.name )
                   cursorObj = con.cursor()
