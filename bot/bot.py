@@ -261,14 +261,14 @@ while True:
                 else:
                     logging.info("- post ok")
                 cursorObj = con.cursor()
-                cursorObj.execute('INSERT INTO rep_posts (rep, postid, posttime, reported, poster) VALUES (%s, %s, %s, 0, %s)', (submission.author_flair_text, submission.id, submission.created_utc, submission.author.name))
+                cursorObj.execute('INSERT INTO rep_posts (rep, postid, posttime, reported, poster, title) VALUES (%s, %s, %s, 0, %s, %s)', (submission.author_flair_text, submission.id, submission.created_utc, submission.author.name, submission.title))
                 con.commit()
                 logID(submission.id)
 
             else:
                 con.ping(reconnect=True)
                 cursorObj = con.cursor()
-                cursorObj.execute('INSERT INTO all_posts (rep, postid, posttime, reported, poster) VALUES (%s, %s, %s, 0, %s)', (submission.author_flair_text, submission.id, submission.created_utc, submission.author.name))
+                cursorObj.execute('INSERT INTO all_posts (rep, postid, posttime, reported, poster, title) VALUES (%s, %s, %s, 0, %s, %s)', (submission.author_flair_text, submission.id, submission.created_utc, submission.author.name. submission.title))
                 con.commit()
                 check_post(submission)
                 logID(submission.id)
