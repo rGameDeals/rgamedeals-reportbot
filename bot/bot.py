@@ -268,7 +268,7 @@ while True:
             else:
                 con.ping(reconnect=True)
                 cursorObj = con.cursor()
-                cursorObj.execute('INSERT INTO all_posts (rep, postid, posttime, reported, poster, title) VALUES (%s, %s, %s, 0, %s, %s)', (submission.author_flair_text, submission.id, submission.created_utc, submission.author.name, submission.title))
+                cursorObj.execute('INSERT INTO all_posts (rep, postid, posttime, reported, poster, title,link,body) VALUES (%s, %s, %s, 0, %s, %s, %s)', (submission.author_flair_text, submission.id, submission.created_utc, submission.author.name, submission.title, submission.url, submission.url))
                 con.commit()
                 check_post(submission)
                 logID(submission.id)
