@@ -18,12 +18,6 @@ os.environ['TZ'] = 'UTC'
 responded = 0
 footer = ""
 
-con = pymysql.connect(
-    host=os.environ['MYSQL_HOST'],
-    user=os.environ['MYSQL_USER'],
-    passwd=os.environ['MYSQL_PASS'],
-    db=os.environ['MYSQL_DB']
-)
 
 
 
@@ -58,7 +52,12 @@ def logID(postid):
     f.close()
 
 def check_post(submission):
-    con.ping(reconnect=True)
+    con = pymysql.connect(
+    host=os.environ['MYSQL_HOST'],
+    user=os.environ['MYSQL_USER'],
+    passwd=os.environ['MYSQL_PASS'],
+    db=os.environ['MYSQL_DB']
+    )
 ### Find all URLS inside a .self post
     WHITELIST = reddit.subreddit('gamedeals').wiki['gamedealsbot-whitelist'].content_md
     headers = {
@@ -200,7 +199,7 @@ def check_post(submission):
     if report != "":
       logging.info("Reporting post https://redd.it/" + submission.id + " for " + report)
       submission.report("Bot Report - " + report)
-
+    con.close()
 
 
 
