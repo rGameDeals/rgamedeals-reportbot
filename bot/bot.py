@@ -213,7 +213,14 @@ while True:
                 continue
 # Dev Post
             #con.ping(reconnect=True)
-            con.ping(reconnect=True)
+            if 'MYSQL_HOST' in os.environ:
+                  con = pymysql.connect(
+                  host=os.environ['MYSQL_HOST'],
+                  user=os.environ['MYSQL_USER'],
+                  passwd=os.environ['MYSQL_PASS'],
+                  db=os.environ['MYSQL_DB']
+            )
+
 
             cursorObj = con.cursor()
             cursorObj.execute('SELECT * FROM devs WHERE username = %s', (submission.author.name ,  ))
