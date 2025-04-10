@@ -235,7 +235,7 @@ while True:
                   if len(rows) > 0:
                       if 1 == 1:
                           logging.info("- dev poromoting within limit")
-                          report = f"Developer/Publisher submission within {} days of last - https://redd.it/{rows[0][2]}"
+                          report = f"Developer/Publisher submission within {devlimit} days of last - https://redd.it/{rows[0][2]}"
                           logging.info("Reporting post https://redd.it/" + submission.id + " for " + report)
                           submission.report("Bot Report - " + report)
                   else:
