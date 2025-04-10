@@ -226,15 +226,16 @@ while True:
             cursorObj.execute('SELECT * FROM devs WHERE username = %s', (submission.author.name ,  ))
             rows = cursorObj.fetchall()
             if len(rows) > 0:
-
+                  devlimit = rows[0][2]
                   logging.info("Dev/Pub post by " + submission.author.name )
                   cursorObj = con.cursor()
-                  cursorObj.execute('SELECT * FROM all_posts WHERE poster = %s AND posttime > %s ', (submission.author.name , int(submission.created_utc) - (86400 * 12)  ))
+                  cursorObj.execute('SELECT * FROM all_posts WHERE poster = %s AND posttime > %s ', (submission.author.name , int(submission.created_utc) - (86400 * int(devlimit))  ))
                   rows = cursorObj.fetchall()
+
                   if len(rows) > 0:
                       if 1 == 1:
                           logging.info("- dev poromoting within limit")
-                          report = "Developer/Publisher submission within 2 weeks of last - https://redd.it/" + rows[0][2]
+                          report = f"Developer/Publisher submission within {} days of last - https://redd.it/{rows[0][2]}"
                           logging.info("Reporting post https://redd.it/" + submission.id + " for " + report)
                           submission.report("Bot Report - " + report)
                   else:
